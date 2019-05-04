@@ -18,7 +18,7 @@ export default class App extends React.Component {
     componentDidMount() {
         var that = this
         firebase.auth().onAuthStateChanged(function (user) {
-
+            console.log(user)
             if (user) {
 
                 // User is signed in.
@@ -37,14 +37,19 @@ export default class App extends React.Component {
         });
     }
 
+logOutPressed() {
+    console.log("logout")
+    firebase.auth().signOut();
+    this.setState({userIsLoggedIn: false})
 
+}
 
     render() {
-
         if (this.state.userIsLoggedIn) {
             console.log("is Logged in")
             return (
                 <div>
+                    <button onClick={() => this.logOutPressed()} type="button" className="btn btn-primary">Logout</button>
                     <h3>Test 3</h3>
                     <BookList />
                     <BookDetail />

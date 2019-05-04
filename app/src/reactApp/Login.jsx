@@ -1,11 +1,13 @@
 import React from 'react'
+import CreateUser from './containers/CreateUser'
 
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             emailValue: "",
-            passValue: ""
+            passValue: "",
+            loginPage: true
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -22,12 +24,16 @@ class Login extends React.Component {
           });
     }
 
+  
+
     render() {
+        
+        if (this.state.loginPage) {
         return (
             <div className="container login-container ">
                 <div className="row">
                     <div className="col-md-6 login-form-1">
-                        <h3>Login for Form 1</h3>
+                        <h3>Login</h3>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <input className="form-control"  
@@ -49,11 +55,17 @@ class Login extends React.Component {
                             <div className="form-group">
                                 <a href="#" className="ForgetPwd">Forget Password?</a>
                             </div>
+                            <button onClick={() => this.setState({loginPage:false})} type="button" className="btn btn-primary">Create Account</button>
                         </form>
                     </div>
                 </div>
             </div>
         )
+        } else {
+            return (
+                <CreateUser />
+            )
+        }
     }
 }
 
