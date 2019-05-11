@@ -8,15 +8,8 @@ import App from './App'
 import reducers from './reducers/index'
 
 import firebase from 'firebase'
+import config from './config_react'
 
-var config = {
-    apiKey: "AIzaSyCy1iqh6Vu39N6mvzB43KU2ZLEQXaht92A",
-    authDomain: "fromscratch-7654a.firebaseapp.com",
-    databaseURL: "https://fromscratch-7654a.firebaseio.com",
-    projectId: "fromscratch-7654a",
-    storageBucket: "fromscratch-7654a.appspot.com",
-    messagingSenderId: "19472395271"
-  };
   firebase.initializeApp(config);
 
 const createStoreWithMiddleware = applyMiddleware()(createStore)
