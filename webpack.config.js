@@ -20,6 +20,7 @@ module.exports = {
 
     output: {
         filename: 'main.js',
+        chunkFilename: "chunk-[name].[contenthash].js",
         path: path.resolve(__dirname + '/app/', 'dist')
     },
     plugins: [

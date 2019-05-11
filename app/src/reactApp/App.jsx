@@ -1,10 +1,12 @@
 
-import React from 'react'
+import React, {Suspense} from 'react'
 import firebase from 'firebase'
 
-import BookList from './containers/book-list'
-import BookDetail from './containers/book-detail'
 import Login from './Login'
+
+
+const BookList = React.lazy(() => import('./containers/book-list'))
+const BookDetail = React.lazy(() => import('./containers/book-detail')) 
 
 export default class App extends React.Component {
 
@@ -51,8 +53,14 @@ logOutPressed() {
                 <div>
                     <button onClick={() => this.logOutPressed()} type="button" className="btn btn-primary">Logout</button>
                     <h3>Test 3</h3>
+                    <Suspense fallback={<div>Loading Book list...</div>}>
                     <BookList />
+                </Suspense>
+
+                <Suspense fallback={<div>Loading Book detail...</div>}>
                     <BookDetail />
+                    </Suspense>
+                    
                 </div>
             )
         } else {
